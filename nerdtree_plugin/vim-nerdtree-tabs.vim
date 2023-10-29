@@ -368,9 +368,9 @@ fun! s:CloseIfOnlyNerdTreeLeft()
       quit
     else
       " call feedkeys(":tabc\<CR>:\<BS>")
-      call timer_start(20, {-> execute('q') })
-      call timer_start(250, {-> execute('vertical resize 31') })
-      call timer_start(300, {-> execute('wincmd w') })
+      call timer_start(20, {-> execute('q') }) " close buffer after we exit autocmd
+      call timer_start(40, {-> execute('vertical resize 31') }) " window sizing is goofed up, so fix it
+      call timer_start(60, {-> execute('wincmd w') }) " shift focus from NerdTree window to buffer window
       " close
     endif
   endif
